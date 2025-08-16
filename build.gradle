@@ -2,28 +2,27 @@ plugins {
     id 'java'
 }
 
-allprojects {
-    group = 'com.example'
-    version = '1.0.0'
-    
-    repositories {
-        mavenCentral()
-    }
+ext {
+    javaVersion = JavaVersion.VERSION_1_8
+    javapoetVersion = '1.13.0'
 }
 
 subprojects {
     apply plugin: 'java'
-    
+
+    group = 'com.example'
+    version = '0.1.0'
+
+    repositories {
+        mavenCentral()
+    }
+
     java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
-    
-    compileJava {
-        options.encoding = 'UTF-8'
-    }
-    
-    compileTestJava {
+
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
     }
 }
